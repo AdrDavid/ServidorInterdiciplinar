@@ -11,12 +11,18 @@ datasource db {
 
 model Imovel{
   id Int @id @default(autoincrement())
-  bairro String
   quartos Int
   texto String
   valor Float
   imagem Imagem[]
-
+  bairro String
+  rua String
+  cidade String
+  estado String
+  nome String
+  cep Int
+  lat Float
+  long Float
 }
 
 model Imagem{

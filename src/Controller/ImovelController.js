@@ -38,9 +38,12 @@ class imovelController {
     async cadastro(req, res, next) {
         try{
 
-            const {bairro, quartos, texto, valor,} = req.body
+            const {bairro, quartos, texto, valor, rua, cidade, estado, nome, cep, lat, long} = req.body
             const quartosNumber = parseInt(quartos)
             const valorNumber = parseFloat(valor)
+            const cepNumber = parseInt(cep)
+            const latNumber = parseFloat(lat)
+            const longNumber = parseFloat(long)
             const imagens = req.files.map(file => ({ imagem: file.filename }));
 
             const createImovel = await prisma.imovel.create({data:{
@@ -50,8 +53,16 @@ class imovelController {
                 valor : valorNumber,
                 imagem: {
                     create: imagens
-                }
+                },
+                rua,
+                cidade,
+                estado,
+                nome,
+                cep: cepNumber,
+                lat: latNumber,
+                long: longNumber
             }})
+            console.log(valor)
             res.status(200).json({succes: 'imovel criado com sucesso', createImovel})
         }catch(error){
             res.status(500).json({error: 'erro ao criar imoveis'})
