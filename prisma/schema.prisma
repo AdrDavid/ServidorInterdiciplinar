@@ -19,10 +19,9 @@ model Imovel{
   rua String
   cidade String
   estado String
+  numeroCasa Int
   nome String
   cep Int
-  lat Float
-  long Float
 }
 
 model Imagem{
