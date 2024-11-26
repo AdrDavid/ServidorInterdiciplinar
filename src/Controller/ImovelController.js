@@ -1,7 +1,7 @@
 
 import {prisma} from '../prisma.js'
 
-
+// import auth from ''
 class imovelController {
     async getAll(req, res, next) {   
         try{
@@ -38,9 +38,12 @@ class imovelController {
     async cadastro(req, res, next) {
         try{
 
-            const {bairro, quartos, texto, valor, rua, cidade, estado, nome, cep, numeroCasa} = req.body
+            const {bairro, quartos, texto, valor, rua, cidade, estado, nome, cep, numeroCasa, garagem, banheiro, area} = req.body
             const quartosNumber = parseInt(quartos)
             const valorNumber = parseFloat(valor)
+            const areaNumber = parseFloat(area)
+            const garagemNumber = parseInt(garagem)
+            const banheiroNumber = parseInt(banheiro)
             const cepNumber = parseInt(cep)
             const numeroCasaNumber = parseInt(numeroCasa)
             const imagens = req.files.map(file => ({ imagem: file.filename }));
@@ -58,7 +61,12 @@ class imovelController {
                 estado,
                 nome,
                 cep: cepNumber,
-                numeroCasa: numeroCasaNumber
+                numeroCasa: numeroCasaNumber,
+                garagem: garagemNumber,
+                banheiro: banheiroNumber,
+                area: areaNumber,
+               
+
             }})
             console.log(valor)
             res.status(200).json({succes: 'imovel criado com sucesso', createImovel})

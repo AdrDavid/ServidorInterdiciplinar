@@ -5,7 +5,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -22,6 +22,9 @@ model Imovel{
   numeroCasa Int
   nome String
   cep Int
+  garagem Int
+  banheiro Int
+  area Float
 }
 
 model Imagem{
@@ -30,4 +33,11 @@ model Imagem{
   imovel Imovel@relation(fields: [imovel_id], references: [id], onDelete: Cascade )
   imovel_id Int
 
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+ 
 }
