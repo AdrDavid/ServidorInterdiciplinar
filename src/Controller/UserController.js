@@ -80,7 +80,7 @@ class userController{
                 res.status(401).json({mensagem: "Email ou senha inválidos"})
             }
         }catch(e){
-            res.status(500).json({error: 'Erro ao gerar token.'})
+            res.status(500).json({e: 'Erro ao gerar token.'})
         }
     }
 
